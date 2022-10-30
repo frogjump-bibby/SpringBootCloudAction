@@ -1,0 +1,43 @@
+create table test.user
+(
+    id       bigint auto_increment
+        primary key,
+    username varchar(60) null,
+    password varchar(60) null
+);
+
+create table test.user_info
+(
+    id          bigint auto_increment
+        primary key,
+    user_id     varchar(10)                         null comment '用戶id',
+    nick_name   varchar(30)                         null comment '用戶暱稱',
+    mobile_no   varchar(11)                         null comment '用戶註冊手機號',
+    password    varchar(64)                         null comment '登錄密碼',
+    is_login    int                                 null comment '是否登錄，0：未登錄；1：已登錄',
+    login_time  timestamp default CURRENT_TIMESTAMP null comment '最近登錄時間',
+    is_del      int                                 null comment '是否註銷，0-未註銷；1-已註銷',
+    create_time timestamp default CURRENT_TIMESTAMP null comment '創建時間'
+)
+    comment '用戶信息表';
+
+create index idx_ui_mobile_no
+    on test.user_info (mobile_no);
+
+create index idx_ui_user_id
+    on test.user_info (user_id);
+
+create table test.user_sms_code
+(
+    id          bigint auto_increment comment 'id'
+        primary key,
+    mobile_no   varchar(11)                         null comment '用戶註冊手機號',
+    sms_code    varchar(10)                         null comment '短信驗證碼',
+    send_time   timestamp default CURRENT_TIMESTAMP null comment '短信發送信息',
+    create_time timestamp default CURRENT_TIMESTAMP null comment '創建時間'
+)
+    comment '短信驗證碼表';
+
+create index idx_usc_mobile_no
+    on test.user_sms_code (mobile_no);
+
