@@ -1,0 +1,14 @@
+
+docker run --name dev-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
+docker run -p 6379:6379 -v C:/Users/tw001/IdeaProjects/redis-data:/user/local/etc/redis -d redis:latest redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+
+​​docker run --name redis -v //c/Users/tw001/IdeaProjects/redis-data:/data -v //c/Users/tw001/IdeaProjects/redis-data:/etc/redis/redis.conf -p 6379:6379 --appendonly yes --requirepass "123456"​ 
+​​docker run -itd --name redis -v //c/Users/tw001/IdeaProjects/redis-data:/data -v //c/Users/tw001/IdeaProjects/redis-data/redis.conf:/etc/redis/redis.conf -p 6379:6379 redis:latest redis-server /etc/redis/redis.conf --requirepass "123456"​ --appendonly yes
+​​docker run -itd --name redis -v C:/Users/tw001/IdeaProjects/redis-data:/user/local/etc/redis -p 6379:6379 redis:latest redis-server /user/local/etc/redis/redis.conf --appendonly yes --requirepass 123456
+-----------------------------------
+docker exec -it 740c4058c0fa redis-cli
+-----------------------------------
+
+docker run -v  C:/Users/tw001/IdeaProjects/redis-data:/usr/local/etc/redis --name redis -p 6379:6379 -d redis:latest redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+
